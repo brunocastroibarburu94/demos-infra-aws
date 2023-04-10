@@ -1,0 +1,59 @@
+site_name: CEL Digital Twin
+docs_dir: ./src_docs
+nav:
+    - Home: index.md
+    - Bash Examples: 
+        - 01 Getting AMIs : bash_examples/01_retrieveAMIs.md
+    - Terraform Examples: 
+        - 01 Backend Setup : terraform_examples/01_SetUpS3Backend.md
+theme:
+  name: "material"
+dev_addr: '0.0.0.0:8080'
+markdown_extensions:
+    - attr_list
+    - toc:
+        permalink: "#"
+    - pymdownx.arithmatex:
+        generic: true
+    - pymdownx.highlight:
+        anchor_linenums: true
+    - pymdownx.superfences:
+        custom_fences:
+            - name: mermaid
+              class: mermaid
+              format: !!python/name:pymdownx.superfences.fence_code_format
+    - admonition
+    - pymdownx.details
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
+extra_css:
+  - stylesheets/extra.css
+extra_javascript:
+    - src_docs/mathjax.js
+    - https://polyfill.io/v3/polyfill.min.js?features=es6
+    - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+plugins:
+    - search
+    # - extra-sass
+    # - mkdocs-video
+    # - mkdocstrings:
+    #     enabled: !ENV [ENABLE_MKDOCSTRINGS, true]
+    #     custom_templates: templates
+    #     default_handler: python
+    #     watch:
+    #         - src/
+    #     handlers:
+    #     python:
+    #         options:
+    #         show_source: false
+    # - with-pdf: # Render PDF
+    #     author: Bruno Castro
+    #     copyright: Copyright Disclaimer
+    #     output_path: /root/project/user_manual.pdf
+    #     cover: true
+    #     cover_title: User Manual
+    #     cover_subtitle: CEL Digital Twin
+    #     render_js: true # Renders Latex Equations / It needs chromium
+    #     headless_chrome_path: /usr/bin/chromium
+    #     exclude_pages:
+    #        - 'python_classes/'
