@@ -1,0 +1,21 @@
+PROJECT_NAME=aws-infra-demos
+
+# Windows OS
+
+# Build Image
+docker build  -t ${PROJECT_NAME}-image .
+
+# Remove container with same name
+# docker rm ${PROJECT_NAME}-container 
+
+# Start container
+winpty docker run --rm -it \
+--env-file ./.env \
+--mount type=bind,source="$(PWD)",target=/root/project \
+--mount type=bind,source="$HOME/.aws",target=/root/.aws \
+--name ${PROJECT_NAME}-container \
+--entrypoint bash \
+${PROJECT_NAME}-image 
+
+# Enter running container
+# winpty docker exec -it ${PROJECT_NAME}-container bash
