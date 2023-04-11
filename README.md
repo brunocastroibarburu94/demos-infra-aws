@@ -38,6 +38,7 @@ make tfXX_apply
 make tfXX_destroy
 ```
 
+> When executing the *plan* or *apply* make commands the file **backend.tf** of the example is modified this is because the the name of the bucket and state file need to be passed as hardcoded strings in the file, therefore a template file is put in place to replace the backend. Moreover this also introduces some nice features as it allows us to dynamically pick the backend to be used if we want to perform the experiment/example on another backend. 
 <!-- 
 ### Content (AWS CLI) ###
 **Done**<br>

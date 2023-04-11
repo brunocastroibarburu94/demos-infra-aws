@@ -60,7 +60,7 @@ RUN pip install -r /tmp/requirements.txt
 #####################################################
 
 # Setup Work environment
-RUN apt-get install -y make
+RUN apt-get install -y make gettext-base jq
 WORKDIR /root/project
 
 ENTRYPOINT ["tail", "-f", "/dev/null"]
