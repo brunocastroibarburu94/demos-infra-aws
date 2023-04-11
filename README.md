@@ -1,6 +1,42 @@
 # README #
 This repository contain a series of examples regarding AWS infrastrucutre, all the way to the basics up to deploying applications in a CICD pipeline.
 
+> It is important to note that this repository is not meant to be a good practice on how to structure a Terraform project. It is just a compilation of examples that can be used for inspiration or for demoing purposes.
+
+### Setup ###
+To execute this examples there are some pre-requisites to meet:
+1. Have an AWS IAM user with programatic access
+2. Have a role that this user can assume to conduit Terraform commands through such role
+
+Once you have the 2 things above in the .env file, and you have configured your AWS CLI credentials locally set up the following environment variables.
+```bash
+SOURCE_AWS_PROFILE="your-aws-profile"
+TERRAFORM_ROLE_TO_ASSUME="arn:aws:iam::12345678901:role/your-role"
+# Convenient for S3 Backend automation through (refreshEnv.sh)
+S3_BE_BUCKET="your-s3bucket-for-backend"
+S3_BE_REGION="your-region"  
+```
+
+The idea is that you are going to have one AWS user, but you may be using several environment or roles with different permissions, this will be regulated at the role level.
+
+### S3 Backend ###
+Ideally we will be working with cloud based backend, example_01 guides you on how to set up such backend using AWS CLI. After that, we will be using the cloud backend for the downstream examples (these should be independent from each other).
+
+
+### General usage ###
+When you start working first refresh the token by executing in the console:
+```bash
+. refreshEnv.sh
+```
+
+After that look for the example number *XX* to execute and do the following.
+1. Look for the corresponding *tfvars* file to set up the required variables. (Or use the environment variables to set them) 
+2. Use the makefile to execute the plan apply and destroy operations:
+```bash 
+make tfXX_plan
+make tfXX_apply
+make tfXX_destroy
+```
 
 <!-- 
 ### Content (AWS CLI) ###
