@@ -1,5 +1,7 @@
 
 local_container.sh
 .env
-**git_ignored_output****git_ignored_output**
+**git_ignored_output**
 **variables.tfvars
+**/backend.tf
+**.terraform**

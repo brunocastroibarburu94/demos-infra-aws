@@ -1,0 +1,12 @@
+{
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::${AWS_ACCOUNT}:user/${USER_NAME_TERRAFORM_DEPOLYER}"
+            },
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::${S3_BACKEND_BUCKET}"
+        }
+    ]
+}

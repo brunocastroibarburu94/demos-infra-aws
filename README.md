@@ -33,9 +33,10 @@ After that look for the example number *XX* to execute and do the following.
 1. Look for the corresponding *tfvars* file to set up the required variables. (Or use the environment variables to set them) 
 2. Use the makefile to execute the plan apply and destroy operations:
 ```bash 
-make tfXX_plan
-make tfXX_apply
-make tfXX_destroy
+make XX=01 tf_init
+make XX=01 tf_plan
+make XX=01 tf_apply
+make XX=01 tf_destroy
 ```
 
 > When executing the *plan* or *apply* make commands the file **backend.tf** of the example is modified this is because the the name of the bucket and state file need to be passed as hardcoded strings in the file, therefore a template file is put in place to replace the backend. Moreover this also introduces some nice features as it allows us to dynamically pick the backend to be used if we want to perform the experiment/example on another backend. 

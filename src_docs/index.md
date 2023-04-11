@@ -6,3 +6,13 @@ In this documentation you will find information about the examples hosted in [Gi
 
 
 The README file in the repository should include enough information to get to know how to execute examples but details about what each example produces is provided in this site.<br>
+
+### Resource Pricing ###
+
+###### DynamoDB free tier #####
+[Information from AWS](https://aws.amazon.com/dynamodb/pricing/on-demand/)<br>
+> The AWS Free Tier enables you to gain free, hands-on experience with AWS services. The following DynamoDB benefits are included as part of the AWS Free Tier. Each benefit is calculated monthly on a per-Region, per-payer account basis.<br>
+
+- 25 GB of data storage for tables using the DynamoDB Standard table class
+- 2.5 million stream read requests from DynamoDB Streams
+- 100 GB of data transfer out to the internet, aggregated across all AWS Services and Regions (except China and GovCloud)
