@@ -336,6 +336,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    Results
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#frequent-questions" class="md-nav__link">
     Frequent Questions
   </a>
@@ -391,6 +398,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    Results
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#frequent-questions" class="md-nav__link">
     Frequent Questions
   </a>
@@ -421,21 +435,31 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh-keygen<span class="w"> </span>-f<span class="w"> </span>/root/.ssh/demo-e2-key
 </code></pre></div>
 <p>Then you can use the following command to connect via SSH once the server is up:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span>-i<span class="w"> </span>ireland-region-key-pair<span class="w"> </span>ubuntu@ec2-34-243-2-176.eu-west-1.compute.amazonaws.com
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># ssh -i {private_key} {user}@{target_ip_address} </span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ssh<span class="w"> </span>-i<span class="w"> </span>/root/.ssh/demo-e2-key<span class="w"> </span>ubuntu@ec2-34-243-2-176.eu-west-1.compute.amazonaws.com
 </code></pre></div>
+<h3 id="results">Results<a class="headerlink" href="#results" title="Permanent link">#</a></h3>
+<p>@fig:findEC2</p>
+<p><img alt="Locate EC2 instance" id="fig:findEC2" src="../figures/e02_find_server.PNG" /></p>
 <h3 id="frequent-questions">Frequent Questions<a class="headerlink" href="#frequent-questions" title="Permanent link">#</a></h3>
 <p><strong>How do you know your public IP address?</strong><br>
 As you may already know if your internet provider allocates you a dynamic IP address, your public IP address is going to change everytime you turn on and off your PC. Therefore the first thing to address in this document is how to retrieve your public IP address thing you need to do is to know what your. <br></p>
-<p>There are many ways to get your public IP address:
-1. From Bash Script: As in this  <a href="https://unix.stackexchange.com/questions/22615/how-can-i-get-my-external-ip-address-in-a-shell-script">StackExchange article</a>, using the <strong>dig</strong> command working with <a href="https://en.wikipedia.org/wiki/OpenDNS">OpenDNS</a>.<br>
+<p>There are many ways to get your public IP address:<br></p>
+<ol>
+<li>
+<p>From Bash Script: As in this  <a href="https://unix.stackexchange.com/questions/22615/how-can-i-get-my-external-ip-address-in-a-shell-script">StackExchange article</a>, using the <strong>dig</strong> command working with <a href="https://en.wikipedia.org/wiki/OpenDNS">OpenDNS</a>.<br>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>dig<span class="w"> </span>+short<span class="w"> </span>myip.opendns.com<span class="w"> </span>@resolver1.opendns.com
-</code></pre></div>
-2. From using your brower and going to <a href="http://ipv4.icanhazip.com">http://ipv4.icanhazip.com</a>. Note that if you are using a VPN this value may change.</p>
-<p>In this example we do not care about the passing it as an input because the IP address is fetched using
+</code></pre></div></p>
+</li>
+<li>
+<p>From using your brower and going to <a href="http://ipv4.icanhazip.com">http://ipv4.icanhazip.com</a>. Note that if you are using a VPN this value may change.</p>
+</li>
+</ol>
+<p>In this example we do not care about the passing it as an input because the IP address is fetched using</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">data</span><span class="w"> </span><span class="s">&quot;http&quot;</span><span class="w"> </span><span class="s">&quot;myip&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nx">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;http://ipv4.icanhazip.com&quot;</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 
 
 

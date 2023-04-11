@@ -49,4 +49,5 @@ doc-build:
 	mkdocs build
 
 doc-serve:
-	mkdocs serve --dev-addr 0.0.0.0:8031 --config-file ./mkdocs.yml --verbose #--quiet #& >/dev/null &
+	mkdocs serve --dev-addr 0.0.0.0:8031 --config-file ./mkdocs.yml --verbose
+	

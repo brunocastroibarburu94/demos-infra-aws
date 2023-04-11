@@ -9,6 +9,13 @@ The README file in the repository should include enough information to get to kn
 
 ### Resource Pricing ###
 
+###### S3 free tier #####
+On the first 12 months since your AWS account was created you get:<br>
+
+- 5 GB in the S3 Standard storage class
+- 20,000 Get Requests
+- 2,000 Put, Copy, Post, or List Requests
+
 ###### DynamoDB free tier #####
 [Information from AWS](https://aws.amazon.com/dynamodb/pricing/on-demand/)<br>
 > The AWS Free Tier enables you to gain free, hands-on experience with AWS services. The following DynamoDB benefits are included as part of the AWS Free Tier. Each benefit is calculated monthly on a per-Region, per-payer account basis.<br>
