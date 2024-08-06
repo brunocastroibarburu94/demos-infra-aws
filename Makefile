@@ -44,6 +44,10 @@ tf_plan_unlocked:
 tf_apply_unlocked:
 	cd ${dir_XX} &&	terraform apply -lock=false
 
+tf_destroy_unlocked:
+	cd ${dir_XX} &&	terraform destroy -lock=false
+
+
 # Website documentation targets
 doc-build:
 	mkdocs build

@@ -39,7 +39,37 @@ make XX=01 tf_apply
 make XX=01 tf_destroy
 ```
 
-> When executing the *plan* or *apply* make commands the file **backend.tf** of the example is modified this is because the the name of the bucket and state file need to be passed as hardcoded strings in the file, therefore a template file is put in place to replace the backend. Moreover this also introduces some nice features as it allows us to dynamically pick the backend to be used if we want to perform the experiment/example on another backend. 
+> When executing the *plan* or *apply* make commands the file **backend.tf** of the example is modified, this is because the the name of the bucket and state file need to be passed as hardcoded strings in the file, therefore a template file is put in place to replace the backend. Moreover this also introduces some nice features as it allows us to dynamically pick the backend to be used if we want to perform the experiment/example on another backend. 
+
+### Terraform state locks
+On the first execution of `tf_plan` an error like the one below can appear, 
+
+```
+│ Error: Error acquiring the state lock
+│
+│ Error message: operation error DynamoDB: PutItem, https response error StatusCode: 400, RequestID: 2EN0PH04HA52NQQI48CBMS4EGFVV4KQNSO5AEMVJF66Q9ASUAAJG, ConditionalCheckFailedException: The conditional request failed
+│ Lock Info:
+│   ID:        798ae8cd-37ce-687f-becf-b9ba4bb47fef
+│   Path:      terraform-state-bci/tf03/terraform.tfstate
+│   Operation: OperationTypePlan
+│   Who:       root@63f24fe21b99
+│   Version:   1.9.3
+│   Created:   2024-08-06 13:33:35.9442617 +0000 UTC
+│   Info:
+│
+│
+│ Terraform acquires a state lock to protect the state from being written
+│ by multiple users at the same time. Please resolve the issue above and try
+│ again. For most commands, you can disable locking with the "-lock=false"
+│ flag, but this is not recommended.
+```
+
+On those occassions you can use the `-lock=false` flag on the terraform command or simply the shortcut below.
+```bash 
+make XX=01 tf_plan_unlocked
+make XX=01 tf_apply_unlocked
+```
+
 <!-- 
 ### Content (AWS CLI) ###
 **Done**<br>

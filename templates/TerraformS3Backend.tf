@@ -7,6 +7,13 @@ terraform {
         region  = "$S3_BE_REGION"  
         dynamodb_table = "terraform-state-lock-dynamo"
     }
+    
+    required_providers {
+      aws = {
+        source  = "hashicorp/aws"
+        version = "~> 5.0"
+      }
+    }
 }
 
 provider "aws" {
