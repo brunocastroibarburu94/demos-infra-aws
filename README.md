@@ -70,6 +70,12 @@ make XX=01 tf_plan_unlocked
 make XX=01 tf_apply_unlocked
 ```
 
+# Active problems on Example 03: ECS Streamlit
+
+```
+service my-ecs-service failed to launch a task with (error ECS was unable to assume the role 'arn:aws:iam::311924505883:role/AmazonECSTaskExecutionRolePolicy' that was provided for this task. Please verify that the role being passed has the proper trust relationship and permissions and that your IAM user has permissions to pass this role.)
+```
+
 <!-- 
 ### Content (AWS CLI) ###
 **Done**<br>
