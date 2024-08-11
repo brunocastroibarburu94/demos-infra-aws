@@ -1,11 +1,5 @@
-resource "aws_s3_bucket" "prod-ecs-logs-03" {
-  bucket = "bci-prod-ecs-logs-03"
-}
-
-
-
-resource "aws_ecr_repository" "prod-ecr-03" {
-  name                 = "prod-ecr-03"
+resource "aws_ecr_repository" "prod_ecr_repo" {
+  name                 = "prod-ecr-repo"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -13,3 +7,7 @@ resource "aws_ecr_repository" "prod-ecr-03" {
   }
 }
 
+output "ecr_url" {
+  value = aws_ecr_repository.prod_ecr_repo.repository_url
+  description = "The URL of the ECR repository."
+}

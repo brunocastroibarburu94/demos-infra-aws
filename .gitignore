@@ -4,4 +4,4 @@ local_container.sh
 **git_ignored_output**
 **variables.tfvars
 **/backend.tf
-**.terraform**
+**.terraform**site/
