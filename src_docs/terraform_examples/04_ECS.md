@@ -31,13 +31,26 @@ make XX=04 tf_apply
 make XX=03 tf_destroy
 ```
 
+#### Results
+Now the Nginx shouyld be available through the load balancer, first go to the Load Balancer page to know the its public address.
+![e04_ALB](figures/e04_ALB.PNG){#fig:e04_ALB}
+
+By copying it into the browser now you should be able to see the Nginx server.
+![e04_ALB_Welcome_to_nginx!](figures/e04_ALB_Welcome_to_nginx!.PNG){#fig:e04_ALB_Welcome_to_nginx!}
 
 ### Known issues
-The services do not automatically deploy in the EC2 instance. This can be observed by having 503 responses when trying to call the address of the Load Balancer, the 503 responses can be seen in cloudwatch or on the Monitoring tab of the load balancer in the console.
+The services do not automatically deploy in the EC2 instance. If this happens you can get a 503 response from the load balancer like the one below.
 
+![e04_503](figures/e04_503.PNG){#fig:e04_503}
+
+The attempts to connect through the load balancer can be also observed, in particular the 503 responses when trying to call the address of the Load Balancer can be seen in the console either from cloudwatch or from the Monitoring tab of the load balancer in the console.
 ![ALB 503 Monitoring Tab](figures/e04_ALB_503_attempts.PNG){#fig:04_ALB503}
 
 ![ALB 503 CloudWatch](figures/e04_ALB_503_attempts_cloudwatch.PNG){#fig:04_ALB503_CloudWatch}
+
+If the target is correctly registered for the Load Balancer but the task is not executed (the docker container is not running in the EC2 instance) a 502 error will appear instead.
+
+![e04_502](figures/e04_502.PNG){#fig:e04_502}
 
 #### How to make it work
 Use the following commands to connect via SSH on any of the EC2 instances created by the ECS capacity provider (in this example I picked the bottom one):
@@ -88,6 +101,6 @@ The next step is to register the EC2 instance into the target of the ALB, you wi
 
 ![e04_Manual_Target_Registration](figures/e04_Manual_Target_Registration.PNG){#fig:e04_Manual_Target_Registration}
 
-Now the Nginx shouyld be available through the load balancer.
+Now the Nginx should be available through the load balancer.
 ![e04_ALB](figures/e04_ALB.PNG){#fig:e04_ALB}
 ![e04_ALB_Welcome_to_nginx!](figures/e04_ALB_Welcome_to_nginx!.PNG){#fig:e04_ALB_Welcome_to_nginx!}

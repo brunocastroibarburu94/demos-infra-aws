@@ -7,6 +7,8 @@ dir_tf01 := ${dir_proj}/aws_terraform/example_01
 s3bet := ${dir_proj}/templates/TerraformS3Backend.tf
 # Directory 
 dir_XX := ${dir_proj}/aws_terraform/example_${XX}
+# Bash Example Directory
+bash_dir_XX := ${dir_proj}/aws_bash/example_${XX}
 
 
 
@@ -18,8 +20,11 @@ pip-compile:
 run:
 	echo "Hi"
 
-bash01:
-	cd ./aws_bash/example_01_retrieve_available_amis;  ./get_available_amis.sh;
+bash_run:
+	cd ${bash_dir_XX} &&  ./run.sh
+
+bash_destroy:
+	cd ${bash_dir_XX} &&  ./destroy.sh
 
 tf01_prelim:
 	cd ${dir_tf01} && . preliminary_setup_optional.sh
