@@ -1,7 +1,16 @@
 
+aws_terraform/terraform_vpc/example_2_accessing_vpc_from_trusted_ip/ireland-region-key-pair
+aws_terraform/terraform_vpc/example_2_accessing_vpc_from_trusted_ip/ireland-region-key-pair.pub
+*ireland-region-key-pair*
+aws_terraform/example_11_serving_static_website_with_notebook_widgets/Embed Interactive Jupyter Notebooks in Static Websites for Free _ Ezequiel Leonardo Castaño Personal Website_files/
+aws_emr/aws_emr_01_setup/emr-architecture-master/
+aws_terraform/example_14_serving_static_website_with_notebook_widgets/Embed Interactive Jupyter Notebooks in Static Websites for Free _ Ezequiel Leonardo Castaño Personal Website_files/
+example_01/kubectl_configfile.config
 local_container.sh
 .env
 **git_ignored_output**
 **variables.tfvars
 **/backend.tf
-**.terraform**site/
+**.terraform**
+site/
+aws_terraform/example_04/temp/

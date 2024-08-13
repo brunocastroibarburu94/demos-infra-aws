@@ -42,12 +42,15 @@ docker run -t -i -p 80:80 hello-world
 # Tag your image: Images tagged with ${AWS_ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/prod-ecr-repo are the only ones to be uploaded
 docker tag hello-world ${AWS_ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/prod-ecr-repo
 
+docker tag <local_image>:<local_image_tag> <repository_url>:<image_Tag_you_wanna_proivde_in_ECR>
+
 # Link docker to your ECR repository
 aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/prod-ecr-repo
 
 
 # Push images tagged with ${AWS_ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/prod-ecr-repo
 docker push ${AWS_ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/prod-ecr-repo
+
 ```
 
 #### 3 - Clean up
