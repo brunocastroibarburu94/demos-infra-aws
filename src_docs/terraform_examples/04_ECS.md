@@ -1,0 +1,93 @@
+# Example 04: Creating an ECS Service
+In this example we will set up a nginx server as a ECS service, this allows us to add a load balancer that if the server CPU and or Memory exceeds a threshold (i.e., 70%) another EC2 instance spins up and the load balancer redirects the requests to the least constrained EC2.
+ 
+### Pre-requisites
+- Have Docker CLI in your system
+- Set up your S3 backend following [Example 1](/terraform_examples/01_SetUpS3Backend/)
+- Set up ECR following [Example 3](/terraform_examples/03_ECR/) <!-- Although is not needed, references to it are made during development and need to be cleaned up -->
+
+### Procedure
+#### 1 - Build your Infrastructure
+Refresh your token if needed.
+```bash
+. refreshEnv.sh
+```
+
+Initialize terraform and setup the backend file for this example.
+```bash 
+make XX=04 tf_init
+```
+Then proceed to visualize the resources to be created 
+```bash 
+make XX=04 tf_plan
+```
+And proceed to create them:
+```bash 
+make XX=04 tf_apply
+```
+#### 2 - Clean up
+**Remember to destroy the resources after you finished or you may be charged by AWS.**
+```bash 
+make XX=03 tf_destroy
+```
+
+
+### Known issues
+The services do not automatically deploy in the EC2 instance. This can be observed by having 503 responses when trying to call the address of the Load Balancer, the 503 responses can be seen in cloudwatch or on the Monitoring tab of the load balancer in the console.
+
+![ALB 503 Monitoring Tab](figures/e04_ALB_503_attempts.PNG){#fig:04_ALB503}
+
+![ALB 503 CloudWatch](figures/e04_ALB_503_attempts_cloudwatch.PNG){#fig:04_ALB503_CloudWatch}
+
+#### How to make it work
+Use the following commands to connect via SSH on any of the EC2 instances created by the ECS capacity provider (in this example I picked the bottom one):
+
+![e04_EC2s](figures/e04_EC2s.PNG){#fig:e04_EC2s}
+Make note of its attributes as they are generated for the instance and will be different on each instantiation of this infrastructure:
+- **Public IPv4 address:** 3.253.43.66
+- **Private IP address:** 10.0.2.86
+
+```bash
+# ssh -i {private_key} {user}@{target_ip_address} 
+ssh -i /root/.ssh/demo-e2-key ec2-user@ec2-3-253-43-66.eu-west-1.compute.amazonaws.com
+```
+First check that you have docker installed by listing the containers and images in the EC2 instance.
+```bash
+# List all the containers 
+docker ps-a 
+# List all the images
+docker images -a 
+```
+
+![e04_EC2_initial_docker](figures/e04_EC2_initial_docker.PNG){#fig:e04_EC2_initial_docker}
+
+Manually pull and run the nginx server.
+
+```bash
+# Pull the image for the nginx server
+docker pull nginx:latest
+
+# Run the image (use -d option to run in detached mode,aka in the background)
+docker run -p 80:80 nginx
+# docker run -d -p 80:80 nginx 
+```
+
+
+![e04_EC2_docker_pull_nginx](figures/e04_EC2_docker_pull_nginx.PNG){#fig:e04_EC2_docker_pull_nginx}
+
+After running docker run wait for a couple of minutes, Nginx takes some time to start, it will show something similar to the logs below for a couple of minutes before starting to display the logs from incoming connections.
+
+![Nginx start](figures/e04_EC2_Nginx_start_patience.PNG){#fig:04_Nginx_start}
+
+Now you should be able to access the Nginx server from the public IP address of the EC2.
+![e04_EC2_Welcome_to_nginx!](figures/e04_EC2_Welcome_to_nginx!.PNG){#fig:e04_EC2_Welcome_to_nginx!}
+
+
+
+The next step is to register the EC2 instance into the target of the ALB, you will need to navigate to the `ecs-target-group` and register the private IP address of the instance running Nginx.
+
+![e04_Manual_Target_Registration](figures/e04_Manual_Target_Registration.PNG){#fig:e04_Manual_Target_Registration}
+
+Now the Nginx shouyld be available through the load balancer.
+![e04_ALB](figures/e04_ALB.PNG){#fig:e04_ALB}
+![e04_ALB_Welcome_to_nginx!](figures/e04_ALB_Welcome_to_nginx!.PNG){#fig:e04_ALB_Welcome_to_nginx!}
