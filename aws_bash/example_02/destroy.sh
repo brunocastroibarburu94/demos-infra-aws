@@ -1,0 +1,1 @@
+echo "Nothing to destroy, check the documentation and delete images from ECR manually if needed."
