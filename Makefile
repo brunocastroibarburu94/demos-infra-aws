@@ -34,10 +34,13 @@ tf_init:
 	cd ${dir_XX} &&	export S3_BE_KEY=tf${XX}/terraform.tfstate; envsubst < ${s3bet} > backend.tf &&	terraform init
 
 tf_plan:
-	cd ${dir_XX} &&	terraform plan
+	cd ${dir_XX} &&	terraform plan -out tf_plan
 
 tf_apply:
 	cd ${dir_XX} &&	terraform apply -auto-approve -lock=false
+
+tf_apply_plan:
+	cd ${dir_XX} &&	terraform apply -auto-approve tf_plan  &&  terraform output > tf_apply_output
 
 tf_destroy:
 	cd ${dir_XX} &&	terraform destroy

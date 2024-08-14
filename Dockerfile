@@ -26,7 +26,7 @@ RUN terraform --version
 ###### AWS CLI Installation ######
 ##################################
 # Installation dependencies
-RUN apt-get install -y curl unzip
+RUN apt-get install -y curl unzip groff
 # Download files
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 # Unzip
@@ -54,6 +54,13 @@ RUN python3.11 -m pip install pip-tools
 #Install Requirements
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
+
+###################################################
+###### Add dependencies of specific examples ######
+###################################################
+
+# Example 5 sets up a Postgres RDS
+RUN apt-get install -y postgresql
 
 #####################################################
 ###### Setup Container Instantiation Behaviour ######

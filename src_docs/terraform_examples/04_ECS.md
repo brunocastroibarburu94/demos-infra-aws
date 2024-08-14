@@ -28,7 +28,7 @@ make XX=04 tf_apply
 #### 2 - Clean up
 **Remember to destroy the resources after you finished or you may be charged by AWS.**
 ```bash 
-make XX=03 tf_destroy
+make XX=04 tf_destroy
 ```
 
 #### Results
