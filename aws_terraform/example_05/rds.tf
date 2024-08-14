@@ -42,6 +42,7 @@ resource "aws_db_instance" "postgres_db_05" {
   publicly_accessible = true
   username = "bruno"
   manage_master_user_password = true 
+  skip_final_snapshot = true
 }
 
 output "db_identifier" {
